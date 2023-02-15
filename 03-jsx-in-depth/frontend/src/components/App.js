@@ -3,7 +3,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      headline: "React Application",
+      headline: 'React Application',
     };
 
     this.handleChangeHeadline = this.handleChangeHeadline.bind(this);
@@ -11,7 +11,7 @@ class App extends React.Component {
 
   handleChangeHeadline() {
     this.setState({
-      headline: "NEW HEADLINE! 😃",
+      headline: 'NEW HEADLINE! 😃',
     });
   }
 
