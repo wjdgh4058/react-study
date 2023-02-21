@@ -1,8 +1,10 @@
-import { render, screen } from "@testing-library/react";
-import App from "./App";
+import { render, screen } from '@testing-library/react';
+import App from './App';
 
-test("renders learn react link", () => {
+test('App 컴포넌트 내부의 React 로고는 접근성을 준수했나요?', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  const reactLogo = screen.getByRole('img');
+
+  expect(reactLogo.getAttribute('alt')).toBe('React');
 });

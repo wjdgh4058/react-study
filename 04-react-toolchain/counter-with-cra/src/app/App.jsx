@@ -1,11 +1,15 @@
 import "./App.css";
-// import Counter from "../components/Counter";
-import Counter from "../components/Counter.Function";
+import { CounterFunction, CounterClass, Button } from "../components";
 
 function App() {
   return (
     <div className="App">
-      <Counter count={9} />
+      <h2>함수 컴포넌트</h2>
+      <CounterFunction count={2} />
+      <h2>클래스 컴포넌트</h2>
+      <CounterClass step={3} />
+      <h2>버튼 컴포넌트</h2>
+      <Button />
     </div>
   );
 }
