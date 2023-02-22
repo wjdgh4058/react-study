@@ -1,6 +1,4 @@
-import { Component } from "react";
-
-import styles from "./Counter.module.css";
+import { Component } from 'react';
 
 class Counter extends Component {
   static defaultProps = {
@@ -18,7 +16,7 @@ class Counter extends Component {
     const { count } = this.state;
 
     return (
-      <div className={styles.container}>
+      <div className="Counter">
         <button
           type="button"
           onClick={this.handleInc}
