@@ -1,24 +1,20 @@
-import classes from './A11yHidden.module.css';
+import { forwardRef } from "react";
+import classes from "./A11yHidden.module.css";
 
-export const A11yHidden = ({
-  as: Component = 'span',
-  focusable = false,
-  className = '',
-  ...restProps // 나머지 매개변수: { id, title, 'data-myName', children }
-}) => {
-  // 변수(문자 값) + ' ' + 변수(문자 값)
-  // `${개발자의 클래스이름} ${사용자의 클래스이름}`
-  const combinedClassNames = `${classes.srOnly} ${className}`.trim();
-  return (
-    <Component
-      className={combinedClassNames}
-      {...restProps} // 전개 구문: { className, id, title, 'data-myName', children }
-    />
-  );
-};
+export const A11yHidden = forwardRef(
+  /* function A11yHidden */ (
+    /* props */
+    { as: Component = "span", focusable = false, className = "", ...restProps },
+    /* ref (forwarding) */
+    ref
+  ) => {
+    const combinedClassNames = `${classes.srOnly} ${
+      focusable ? classes.focusable : ""
+    } ${className}`.trim();
 
-// props (외부에서 전달되는 함수의 인자 집합)
-// 함수 내부에서는 기본 값 설정
-// A11yHidden.defaultProps = {
-//   as: 'span',
-// };
+    return (
+      <Component ref={ref} className={combinedClassNames} {...restProps} />
+    );
+  }
+);
+A11yHidden.displayName = "A11yHidden";
