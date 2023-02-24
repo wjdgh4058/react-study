@@ -1,12 +1,16 @@
-import { useRef, useEffect } from "react";
-import { BaseLayout, FormInput, Button } from "@/components";
-import classes from "./SignUp.module.scss";
+import { useRef /* useState */ } from 'react';
+import { BaseLayout, FormInput, Button } from '@/components';
+import classes from './SignUp.module.scss';
+// import { EventSubUnsub } from '@/demo/EventSubUnsub';
+import { validator } from '@/utils';
+
+console.log(validator.isId('ab35', { min: 3, max: 11 }));
 
 const initialFormState = {
-  name: "",
-  email: "",
-  password: "",
-  passwordConfirm: "",
+  name: '',
+  email: '',
+  password: '',
+  passwordConfirm: '',
 };
 
 /* Component ---------------------------------------------------------------- */
@@ -15,17 +19,15 @@ const initialFormState = {
 // re-rendering (immutation) vs. re-rendering ❌ (mutation)
 
 export default function SignUp() {
-  const formStateRef = useRef(initialFormState);
+  // const [isVisible, setIsVisible] = useState(true);
+  // const [message, setMessage] = useState('before update');
 
-  useEffect(() => {
-    console.log("update sign up");
-    console.log(formStateRef);
-  });
+  const formStateRef = useRef(initialFormState);
 
   const handleReset = (e) => {
     e.preventDefault();
 
-    console.log("reset");
+    console.log('reset');
   };
 
   const handleSubmit = (e) => {
@@ -33,7 +35,7 @@ export default function SignUp() {
 
     console.log(formStateRef.current);
 
-    console.log("회원가입 시도 → Firebase Authentication");
+    console.log('회원가입 시도 → Firebase Authentication');
   };
 
   const handleChangeInput = (e) => {
@@ -43,6 +45,21 @@ export default function SignUp() {
 
   return (
     <BaseLayout className={classes.SignUp}>
+      {/* {isVisible && <EventSubUnsub />}
+      <button type="button" onClick={() => setIsVisible(!isVisible)}>
+        {isVisible ? 'unmount' : 'mount'}
+      </button>
+      <p>{message}</p>
+      <button
+        type="button"
+        onClick={() =>
+          setMessage(
+            message.includes('before update') ? 'after update' : 'before update'
+          )
+        }
+      >
+        update
+      </button> */}
       <h2>회원가입 페이지</h2>
       <form
         className={classes.form}

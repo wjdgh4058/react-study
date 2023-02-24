@@ -1,7 +1,7 @@
-import { useId, useRef, useEffect } from "react";
-import { bool, string } from "prop-types";
-import { A11yHidden } from "@/components";
-import classes from "./FormInput.module.scss";
+import { useId, useRef, useEffect } from 'react';
+import { bool, string } from 'prop-types';
+import { A11yHidden } from '@/components';
+import classes from './FormInput.module.scss';
 
 /* Component ---------------------------------------------------------------- */
 
@@ -22,7 +22,7 @@ export function FormInput({
     const component = input.parentElement;
 
     // 이벤트 연결
-    input.addEventListener("blur", (e) => {
+    input.addEventListener('blur', (e) => {
       if (e.target.value.length > 0) {
         component.classList.add(classes.inputed);
       } else {
@@ -32,7 +32,7 @@ export function FormInput({
   }, []);
 
   const combineClassNames = `${classes.FormInput} ${
-    vertical ? classes.FormInputVertical : ""
+    vertical ? classes.FormInputVertical : ''
   }`.trim();
 
   return (
@@ -52,7 +52,7 @@ export function FormInput({
 /* Props -------------------------------------------------------------------- */
 
 FormInput.defualtProps = {
-  type: "text",
+  type: 'text',
   invisibleLabel: false,
   vertical: false,
   inputed: false,
