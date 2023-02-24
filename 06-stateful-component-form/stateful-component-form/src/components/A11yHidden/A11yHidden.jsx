@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
-import { forwardRef } from "react";
-import classes from "./A11yHidden.module.scss";
+import { forwardRef } from "react"
+import classes from "./A11yHidden.module.scss"
 
 /* Higher-order Component ------------------------------------------------------ */
 
@@ -11,7 +11,7 @@ export const A11yHidden = forwardRef(function A11yHidden(
 ) {
   const combinedClassNames = `${classes.A11yHidden} ${
     focusable ? classes.focusable : ""
-  } ${className}`.trim();
+  } ${className}`.trim()
 
-  return <Component ref={ref} className={combinedClassNames} {...restProps} />;
-});
+  return <Component ref={ref} className={combinedClassNames} {...restProps} />
+})

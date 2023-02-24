@@ -1,32 +1,44 @@
-import { useState } from 'react';
-import { BaseLayout, FormInput, Button } from '@/components';
-import classes from './SignUp.module.scss';
-
-/* Intialization ------------------------------------------------------------ */
+import { useRef, useEffect } from "react";
+import { BaseLayout, FormInput, Button } from "@/components";
+import classes from "./SignUp.module.scss";
 
 const initialFormState = {
-  name: '',
-  email: '',
-  password: '',
-  passwordConfirm: '',
+  name: "",
+  email: "",
+  password: "",
+  passwordConfirm: "",
 };
 
 /* Component ---------------------------------------------------------------- */
 
+// useState vs. useRef
+// re-rendering (immutation) vs. re-rendering ❌ (mutation)
+
 export default function SignUp() {
-  const [formState, setFormState] = useState(initialFormState);
+  const formStateRef = useRef(initialFormState);
+
+  useEffect(() => {
+    console.log("update sign up");
+    console.log(formStateRef);
+  });
 
   const handleReset = (e) => {
     e.preventDefault();
 
-    console.log('reset');
-    setFormState(initialFormState);
+    console.log("reset");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log('회원가입 시도 → Firebase Authentication');
+    console.log(formStateRef.current);
+
+    console.log("회원가입 시도 → Firebase Authentication");
+  };
+
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    formStateRef.current[name] = value;
   };
 
   return (
@@ -37,28 +49,32 @@ export default function SignUp() {
         onSubmit={handleSubmit}
         onReset={handleReset}
       >
+        <FormInput name="name" label="이름" onChange={handleChangeInput} />
+
         <FormInput
-          vertical
-          label="이름"
-          value={formState.name}
-          inputed={formState.name.length > 0}
-          onChange={(e) => {
-            setFormState({
-              ...formState,
-              name: e.target.value,
-            });
-          }}
+          name="email"
+          type="email"
+          label="이메일"
+          onChange={handleChangeInput}
         />
 
-        <FormInput vertical type="email" label="이메일" />
+        <FormInput
+          name="password"
+          type="password"
+          label="패스워드"
+          onChange={handleChangeInput}
+        />
 
-        <FormInput vertical type="password" label="패스워드" />
-
-        <FormInput vertical type="password" label="패스워드 확인" />
+        <FormInput
+          name="passwordConfirm"
+          type="password"
+          label="패스워드 확인"
+          onChange={handleChangeInput}
+        />
 
         <div className={classes.group}>
           <Button type="submit">회원가입</Button>
-          <Button secondary type="reset" disabled>
+          <Button secondary type="reset">
             초기화
           </Button>
         </div>
